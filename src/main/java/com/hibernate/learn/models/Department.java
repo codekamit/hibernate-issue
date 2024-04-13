@@ -1,5 +1,6 @@
 package com.hibernate.learn.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,5 +18,6 @@ public class Department {
     private Long id;
     private String deptartmentName;
     @OneToMany(mappedBy = "department")
+    @JsonIgnore
     private List<Employee> employees;
 }
