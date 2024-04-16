@@ -1,9 +1,9 @@
-package com.hibernate.learn.models;
+package com.hibernate.learn.models.basic_model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -17,7 +17,6 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String deptartmentName;
-    @OneToMany(mappedBy = "department")
-    @JsonIgnore
-    private List<Employee> employees;
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Employee> employees = new ArrayList<>();
 }

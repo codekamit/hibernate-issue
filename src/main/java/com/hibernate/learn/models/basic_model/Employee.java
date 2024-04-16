@@ -1,4 +1,4 @@
-package com.hibernate.learn.models;
+package com.hibernate.learn.models.basic_model;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,6 +15,7 @@ public class Employee {
     private Long id;
     private String name;
     private int age;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
     private Department department;
 }
