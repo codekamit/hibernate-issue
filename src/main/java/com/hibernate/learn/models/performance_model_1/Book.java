@@ -22,4 +22,22 @@ public class Book extends BaseModel {
     /* Ensure to only include basic attributes to the toString() method, as if you would include attributes that are lazily loaded
     it would trigger additional SQL queries */
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        if(obj == this) {
+            return true;
+        }
+        if(getClass() != obj.getClass()) {
+            return false;
+        }
+        return getId() != null && getId().equals(((Book) obj).getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 2021;
+    }
 }
