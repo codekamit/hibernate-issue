@@ -1,5 +1,6 @@
 package com.hibernate.learn.models.performance_model_1;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hibernate.learn.models.BaseModel;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,6 +19,7 @@ public class Book extends BaseModel {
     //key to the Author entity. It is advisable to specify the desired name for this column.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="author_id")
+    @JsonIgnoreProperties("booksPublished")
     private Author bookAuthor;
     /* Ensure to only include basic attributes to the toString() method, as if you would include attributes that are lazily loaded
     it would trigger additional SQL queries */
@@ -35,7 +37,6 @@ public class Book extends BaseModel {
         }
         return getId() != null && getId().equals(((Book) obj).getId());
     }
-
     @Override
     public int hashCode() {
         return 2021;
